@@ -22,6 +22,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <provider 
+            android:name=".ToDoContentProvider"
+            android:authorities="com.sunny.todoprovider"
+            android:exported="false" />
     </application>
 
 </manifest>
