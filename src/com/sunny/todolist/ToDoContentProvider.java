@@ -34,8 +34,8 @@ public class ToDoContentProvider extends ContentProvider {
 	 */
 	static {
 		uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-		uriMatcher.addURI("com.sunny.todolist", "todoitems", ALLROWS);
-		uriMatcher.addURI("com.sunny.todolist", "todoitem/#", SINGLE_ROW);
+		uriMatcher.addURI("com.sunny.todoprovider", "todoitems", ALLROWS);
+		uriMatcher.addURI("com.sunny.todoprovider", "todoitems/#", SINGLE_ROW);
 	}
 	
 	private MySQLiteOpenHelper myOpenHelper;
@@ -183,7 +183,6 @@ public class ToDoContentProvider extends ContentProvider {
 		public MySQLiteOpenHelper(Context context, String name,
 				CursorFactory factory, int version) {
 			super(context, name, factory, version);
-			// TODO Auto-generated constructor stub
 		}
 
 		@Override
@@ -195,11 +194,11 @@ public class ToDoContentProvider extends ContentProvider {
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 			// 记录版本升级
-			Log.w("TaskDBAdapter", "Upgrading from version " + oldVersion + 
+			Log.w(TAG, "Upgrading from version " + oldVersion + 
 					" to " + newVersion + ", which will destory all old data!");
 			
 			// 最简单的升级方式-删除旧的表，创建新表
-			String sql = "DROP TABLE IF IT EXISTS " + DATABASE_CREATE;
+			String sql = "DROP TABLE IF IT EXISTS " + DATABASE_TABLE;
 			Log.i(TAG, sql);
 			db.execSQL(sql);
 			onCreate(db);
